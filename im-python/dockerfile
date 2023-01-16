@@ -1,0 +1,26 @@
+# image AppPython
+
+FROM python:latest 
+
+COPY ./app-python/ /app 
+WORKDIR /app 
+
+#variables ENV
+ENV DB_USER "testuser" 
+ENV DB_PASSWORD "testpassword" 
+ENV DB_HOST "mariadb" 
+ENV DB_NAME "parc_informatique" 
+
+
+RUN wget https://dlm.mariadb.com/2678579/Connectors/c/connector-c-3.3.3/mariadb-connector-c-3.3.3-debian-buster-amd64.tar.gz -O - | tar -zxf - --strip-components=1 -C /usr
+ENV LD_PRELOAD=/usr/lib/mariadb/libmariadb.so
+ENV LD_LIBRARY_PATH=/usr/lib/mariadb
+
+RUN pip3 install flask mariadb
+
+
+
+# CMD ["python3", "main.py"]
+
+
+# RUN pip3 install --no-cache-dir mariadb

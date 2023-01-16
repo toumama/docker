@@ -1,0 +1,18 @@
+# image mariadb
+
+FROM mariadb
+
+# déclaration des variables
+ENV MARIADB_USER=testuser
+ENV MARIADB_PASSWORD=testpassword
+ENV MARIADB_ROOT_PASSWORD=rootpassword
+ENV MARIADB_DATABASE=parc_informatique
+
+# copy du fichier de l'hote vers le conteneur
+COPY ./create_structure.sql /docker-entrypoint-initdb.d/create_structure.sql
+
+# pour exposer le port 3306 celui de Mariadb
+EXPOSE 3306
+
+#pour lancer le service mysql
+CMD [ "mysqld" ]

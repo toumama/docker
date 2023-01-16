@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+  python:
+    container_name: python
+    image: toumama/pythonimage
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpassword
+     
+    networks:
+        - net-app
+
+  mariadb:
+    container_name: mariadb
+    image: toumama/mariadbimage
+    restart: always
+    networks:
+        - net-app
+    volumes:
+        - db:/var/lib/mariadb
+networks:
+    net-app:
+    
+volumes:
+db:
