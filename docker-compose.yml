@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
 
+# information sur l'appli python
   python:
     container_name: python
     image: toumama/pythonimage
